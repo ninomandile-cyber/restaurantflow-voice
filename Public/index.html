@@ -126,7 +126,6 @@ textarea::placeholder{color:var(--text-dim)}
 <script>
 const SESSION_ID='rf_'+Date.now()+'_'+Math.random().toString(36).substr(2,9);
 let history=[],recognition=null,isListening=false,busy=false;
-
 async function callServer(messages){
   const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages,sessionId:SESSION_ID})});
   if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error||'Server error');}
