@@ -238,15 +238,20 @@ document.getElementById('userInput').addEventListener('input',autoResize);
 document.getElementById('userInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();handleSend();}});
 if(window.speechSynthesis)speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
 function restartChat(){history=[];document.getElementById('chatWindow').innerHTML='';document.getElementById('chipsArea').innerHTML='';initChat();}
-async function initChat(){
-  const g="Welcome to Bella Tavola. I am Sofia, your concierge. I can help you plan a private event, catering, recommend a wine, or answer any questions. What can I help you with?";
-  showTyping();
-  speak(g);
-  await new Promise(function(r){setTimeout(r,900);});
-  removeTyping();
+function startConversation(){
+  document.getElementById('startBtn').style.display='none';
+  const g="Welcome to Bella Tavola. I am Sofia, your concierge. I can help you plan a private event, catering, tell you about today specials, recommend a wine, or answer any questions. What can I help you with?";
   appendMessage('assistant',g);
   history.push({role:'assistant',content:g});
+  speak(g);
   showChips('start');
+}
+async function initChat(){
+  var btn=document.createElement('div');
+  btn.id='startBtn';
+  btn.style.cssText='text-align:center;padding:40px 20px;';
+  btn.innerHTML='<button onclick="startConversation()" style="background:var(--gold);color:#0E0C0A;border:none;border-radius:14px;padding:16px 40px;font-size:16px;font-family:DM Sans,sans-serif;font-weight:500;cursor:pointer;letter-spacing:.04em;">Tap to speak with Sofia</button>';
+  document.getElementById('chatWindow').appendChild(btn);
 }
 initChat();
 </script>
