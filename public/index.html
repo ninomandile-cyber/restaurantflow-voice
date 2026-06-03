@@ -239,9 +239,14 @@ document.getElementById('userInput').addEventListener('keydown',e=>{if(e.key==='
 if(window.speechSynthesis)speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
 function restartChat(){history=[];document.getElementById('chatWindow').innerHTML='';document.getElementById('chipsArea').innerHTML='';initChat();}
 async function initChat(){
-  showTyping();await new Promise(r=>setTimeout(r,900));removeTyping();
-  const g="Welcome to Bella Tavola. I'm Sofia — I can help you plan a private event or catering, tell you about today's specials, recommend a wine pairing, or answer any questions. What can I help you with?";
-  appendMessage('assistant',g);history.push({role:'assistant',content:g});setTimeout(function(){speak(g);},1500);showChips('start');
+  const g="Welcome to Bella Tavola. I am Sofia, your concierge. I can help you plan a private event, catering, recommend a wine, or answer any questions. What can I help you with?";
+  showTyping();
+  speak(g);
+  await new Promise(function(r){setTimeout(r,900);});
+  removeTyping();
+  appendMessage('assistant',g);
+  history.push({role:'assistant',content:g});
+  showChips('start');
 }
 initChat();
 </script>
