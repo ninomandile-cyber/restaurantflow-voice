@@ -220,7 +220,7 @@ async function handleSend(){
     const msgs=history.concat([{role:'user',content:txt}]);
     const result=await callServer(msgs);
     history.push({role:'user',content:txt});history.push({role:'assistant',content:result.reply});
-    removeTyping();appendMessage('assistant',result.reply);speak(result.reply);
+    var cleanReply=result.reply.replace(/\*\*(.*?)\*\*/g,'$1').replace(/\*(.*?)\*/g,'$1').replace(/#{1,6}\s/g,'').replace(/`([^`]+)`/g,'$1');removeTyping();appendMessage('assistant',cleanReply);speak(cleanReply);
     if(result.readyToSubmit&&result.state)renderSummary(result);
     const lo=result.reply.toLowerCase();const type=result.inquiryType||'';
     if(type==='wine_pairing'||lo.includes('wine'))showChips('wine');
