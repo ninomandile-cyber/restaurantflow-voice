@@ -157,14 +157,7 @@ function stopVoice(){
   document.getElementById('waveform').classList.remove('show');
   document.getElementById('userInput').placeholder='Ask me anything or tell me what you\'re planning...';
 }
-function speak(text){
-  if(!window.speechSynthesis)return;speechSynthesis.cancel();
-  if(!text.trim())return;
-  const u=new SpeechSynthesisUtterance(text);u.rate=0.93;u.pitch=1.05;
-  const voices=speechSynthesis.getVoices();
-  const pick=voices.find(v=>v.name.includes('Samantha')||v.name.includes('Karen')||v.name.includes('Victoria'))||voices.find(v=>v.lang==='en-US');
-  if(pick)u.voice=pick;speechSynthesis.speak(u);
-}
+function speak(text){if(!text||!text.trim())return;fetch("/api/speak",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:text})}).then(function(r){if(!r.ok)return;return r.blob();}).then(function(blob){if(!blob)return;var url=URL.createObjectURL(blob);var audio=new Audio(url);audio.play();}).catch(function(e){console.error("TTS error:",e);});}
 function appendMessage(role,text){
   const win=document.getElementById('chatWindow');
   const div=document.createElement('div');div.className=`msg ${role==='assistant'?'agent':'user'}`;
