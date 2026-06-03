@@ -10,21 +10,25 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh}
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:14px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
-.restaurant-name{font-size:16px;color:var(--text);font-weight:400}
-.main{max-width:1100px;margin:0 auto;padding:32px 24px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
-.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px}
-.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-.stat-value{font-size:32px;font-weight:500;color:var(--text)}
-.stat-value.hot{color:var(--red)}
+.logo{font-size:13px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.restaurant-name{font-size:17px;color:var(--text);font-weight:400;margin-top:3px}
+.main{max-width:1200px;margin:0 auto;padding:28px 20px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 22px}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.stat-value{font-size:30px;font-weight:500;color:var(--text)}
+.stat-value.red{color:var(--red)}
 .stat-value.green{color:var(--green)}
-.section-title{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;margin-top:32px}
+.section-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;margin-top:28px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
 .inquiry-table{width:100%;border-collapse:collapse}
-.inquiry-table th{text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;padding:10px 16px;border-bottom:1px solid var(--border);font-weight:400}
-.inquiry-table td{padding:14px 16px;border-bottom:1px solid rgba(201,168,76,0.08);font-size:14px;vertical-align:middle}
-.inquiry-table tr:hover td{background:rgba(201,168,76,0.04)}
-.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;letter-spacing:.04em}
+.inquiry-table th{text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;border-bottom:1px solid var(--border);font-weight:400;white-space:nowrap}
+.inquiry-table td{padding:12px 14px;border-bottom:1px solid rgba(201,168,76,0.07);font-size:13px;vertical-align:top}
+.inquiry-table tr:last-child td{border-bottom:none}
+.inquiry-table tr:hover td{background:rgba(201,168,76,0.03)}
+.guest-name{font-weight:500;font-size:14px;color:var(--text)}
+.guest-contact{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.7}
+.badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:500}
 .badge-hot{background:rgba(196,75,58,.15);color:var(--red);border:1px solid rgba(196,75,58,.3)}
 .badge-warm{background:rgba(212,129,58,.12);color:var(--orange);border:1px solid rgba(212,129,58,.3)}
 .badge-normal{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)}
@@ -32,26 +36,28 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;f
 .badge-contacted{background:rgba(74,140,92,.12);color:var(--green);border:1px solid rgba(74,140,92,.3)}
 .badge-booked{background:rgba(74,140,92,.2);color:var(--green);border:1px solid rgba(74,140,92,.5)}
 .badge-recovery{background:rgba(196,75,58,.2);color:var(--red);border:1px solid var(--red)}
-.status-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.action-btns{display:flex;flex-direction:column;gap:5px}
+.status-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap}
 .status-btn:hover{border-color:var(--gold);color:var(--gold)}
-.specials-section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-top:32px}
-.specials-title{font-size:14px;color:var(--text);font-weight:500;margin-bottom:16px}
-.special-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,168,76,0.08)}
+.detail-line{font-size:12px;color:var(--muted);margin-top:2px}
+.ai-note{font-size:11px;color:var(--gold);line-height:1.6}
+.specials-section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin-top:28px}
+.specials-title{font-size:14px;color:var(--text);font-weight:500;margin-bottom:14px}
+.special-row{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid rgba(201,168,76,0.07)}
 .special-row:last-child{border-bottom:none}
-.special-name{flex:1;font-size:14px}
-.special-price{color:var(--gold);font-size:14px;font-weight:500;width:60px}
-.toggle{position:relative;width:36px;height:20px;cursor:pointer}
+.special-info{flex:1}
+.special-name{font-size:14px}
+.special-desc{font-size:12px;color:var(--muted);margin-top:2px}
+.special-price{color:var(--gold);font-size:14px;font-weight:500;width:50px;text-align:right}
+.toggle{position:relative;width:36px;height:20px;cursor:pointer;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0}
 .slider{position:absolute;top:0;left:0;right:0;bottom:0;background:var(--dim);border-radius:20px;transition:.3s}
 .slider:before{content:"";position:absolute;height:14px;width:14px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s}
 input:checked+.slider{background:var(--green)}
 input:checked+.slider:before{transform:translateX(16px)}
-.empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
-.empty-state p{font-size:15px;margin-bottom:8px}
-.empty-state small{font-size:13px;color:var(--dim)}
-.refresh-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.empty-state{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
+.refresh-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:7px 16px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
 .refresh-btn:hover{border-color:var(--gold);color:var(--gold)}
-.topbar-right{display:flex;align-items:center;gap:12px}
 </style>
 </head>
 <body>
@@ -60,123 +66,110 @@ input:checked+.slider:before{transform:translateX(16px)}
     <div class="logo">RestaurantFlow &mdash; Owner Dashboard</div>
     <div class="restaurant-name" id="restaurantName">Loading...</div>
   </div>
-  <div class="topbar-right">
-    <button class="refresh-btn" onclick="loadData()">Refresh</button>
-  </div>
+  <button class="refresh-btn" onclick="loadData()">Refresh</button>
 </div>
 <div class="main">
   <div class="stats">
-    <div class="stat-card">
-      <div class="stat-label">Total Inquiries</div>
-      <div class="stat-value" id="statTotal">0</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">New Today</div>
-      <div class="stat-value hot" id="statNew">0</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Hot Leads</div>
-      <div class="stat-value hot" id="statHot">0</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Booked</div>
-      <div class="stat-value green" id="statBooked">0</div>
-    </div>
+    <div class="stat-card"><div class="stat-label">Total Inquiries</div><div class="stat-value" id="statTotal">0</div></div>
+    <div class="stat-card"><div class="stat-label">New Today</div><div class="stat-value red" id="statNew">0</div></div>
+    <div class="stat-card"><div class="stat-label">Hot Leads</div><div class="stat-value red" id="statHot">0</div></div>
+    <div class="stat-card"><div class="stat-label">Booked</div><div class="stat-value green" id="statBooked">0</div></div>
   </div>
-
-  <div class="section-title">Recent Inquiries</div>
-  <table class="inquiry-table">
-    <thead>
-      <tr>
-        <th>Guest</th>
-        <th>Type</th>
-        <th>Date Requested</th>
-        <th>Guests</th>
-        <th>Urgency</th>
-        <th>Status</th>
-        <th>Received</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody id="inquiryBody">
-      <tr><td colspan="8"><div class="empty-state"><p>No inquiries yet</p><small>Sofia will send them here as they come in</small></div></td></tr>
-    </tbody>
-  </table>
-
+  <div class="section-title">Inquiries</div>
+  <div class="card">
+    <table class="inquiry-table">
+      <thead>
+        <tr>
+          <th>Guest</th>
+          <th>Type</th>
+          <th>Event Details</th>
+          <th>Food / Bar</th>
+          <th>Dietary</th>
+          <th>AI Notes</th>
+          <th>Urgency</th>
+          <th>Status</th>
+          <th>Received</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="inquiryBody">
+        <tr><td colspan="10"><div class="empty-state">No inquiries yet. Complete a Sofia conversation to see it here.</div></td></tr>
+      </tbody>
+    </table>
+  </div>
   <div class="specials-section">
     <div class="specials-title">Today's Specials</div>
-    <div id="specialsList"></div>
+    <div id="specialsList"><div class="empty-state" style="padding:10px 0">Loading...</div></div>
   </div>
 </div>
 <script>
-var inquiries = [];
-function loadData() {
-  fetch('/api/health').then(function(r){return r.json();}).then(function(h){
-    document.getElementById('restaurantName').textContent = h.restaurant || 'Restaurant';
-  }).catch(function(){});
-  fetch('/api/inquiries').then(function(r){return r.json();}).then(function(data){
-    inquiries = data.inquiries || [];
-    renderStats(inquiries);
-    renderInquiries(inquiries);
-  }).catch(function(e){console.error(e);});
-  fetch('/api/specials').then(function(r){return r.json();}).then(function(data){
-    renderSpecials(data.specials || []);
-  }).catch(function(){renderSpecials([]);});
+function loadData(){
+  fetch('/api/health').then(function(r){return r.json();}).then(function(h){document.getElementById('restaurantName').textContent=h.restaurant||'Restaurant';}).catch(function(){});
+  fetch('/api/inquiries').then(function(r){return r.json();}).then(function(data){var list=data.inquiries||[];renderStats(list);renderInquiries(list);}).catch(function(e){console.error(e);});
+  fetch('/api/specials').then(function(r){return r.json();}).then(function(data){renderSpecials(data.specials||[]);}).catch(function(){renderSpecials([]);});
 }
-function renderStats(list) {
-  var today = new Date().toDateString();
-  var newToday = list.filter(function(i){ return new Date(i.createdAt).toDateString() === today; }).length;
-  var hot = list.filter(function(i){ return i.urgency === 'urgent' || i.urgency === 'high' || i.serviceRecoveryRisk; }).length;
-  var booked = list.filter(function(i){ return i.status === 'booked'; }).length;
-  document.getElementById('statTotal').textContent = list.length;
-  document.getElementById('statNew').textContent = newToday;
-  document.getElementById('statHot').textContent = hot;
-  document.getElementById('statBooked').textContent = booked;
+function renderStats(list){
+  var today=new Date().toDateString();
+  document.getElementById('statTotal').textContent=list.length;
+  document.getElementById('statNew').textContent=list.filter(function(i){return new Date(i.createdAt).toDateString()===today;}).length;
+  document.getElementById('statHot').textContent=list.filter(function(i){return i.urgency==='urgent'||i.urgency==='high'||i.serviceRecoveryRisk;}).length;
+  document.getElementById('statBooked').textContent=list.filter(function(i){return i.status==='booked';}).length;
 }
-function urgencyBadge(i) {
-  if (i.serviceRecoveryRisk) return '<span class="badge badge-recovery">Recovery</span>';
-  if (i.urgency === 'urgent') return '<span class="badge badge-hot">Urgent</span>';
-  if (i.urgency === 'high') return '<span class="badge badge-hot">Hot</span>';
-  if (i.urgency === 'medium') return '<span class="badge badge-warm">Warm</span>';
+function urgencyBadge(i){
+  if(i.serviceRecoveryRisk)return '<span class="badge badge-recovery">Recovery</span>';
+  if(i.urgency==='urgent')return '<span class="badge badge-hot">Urgent</span>';
+  if(i.urgency==='high')return '<span class="badge badge-hot">Hot</span>';
+  if(i.urgency==='medium')return '<span class="badge badge-warm">Warm</span>';
   return '<span class="badge badge-normal">Normal</span>';
 }
-function statusBadge(s) {
-  if (s === 'booked') return '<span class="badge badge-booked">Booked</span>';
-  if (s === 'contacted') return '<span class="badge badge-contacted">Contacted</span>';
+function statusBadge(s){
+  if(s==='booked')return '<span class="badge badge-booked">Booked</span>';
+  if(s==='contacted')return '<span class="badge badge-contacted">Contacted</span>';
   return '<span class="badge badge-new">New</span>';
 }
-function timeAgo(dateStr) {
-  var diff = Date.now() - new Date(dateStr).getTime();
-  var mins = Math.floor(diff/60000);
-  if (mins < 60) return mins + 'm ago';
-  var hrs = Math.floor(mins/60);
-  if (hrs < 24) return hrs + 'h ago';
-  return Math.floor(hrs/24) + 'd ago';
+function timeAgo(d){
+  var diff=Date.now()-new Date(d).getTime();
+  var m=Math.floor(diff/60000);
+  if(m<1)return 'just now';
+  if(m<60)return m+'m ago';
+  var h=Math.floor(m/60);
+  if(h<24)return h+'h ago';
+  return Math.floor(h/24)+'d ago';
 }
-function updateStatus(id, status) {
-  fetch('/api/inquiries/'+id+'/status', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:status})})
-    .then(function(){loadData();}).catch(function(e){console.error(e);});
+function updateStatus(id,status){
+  fetch('/api/inquiries/'+id+'/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:status})}).then(function(){loadData();}).catch(function(e){console.error(e);});
 }
-function renderInquiries(list) {
-  var tbody = document.getElementById('inquiryBody');
-  if (!list.length) {
-    tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><p>No inquiries yet</p><small>Sofia will send them here as they come in</small></div></td></tr>';
-    return;
-  }
-  var sorted = list.slice().sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt);});
-  tbody.innerHTML = sorted.map(function(i){
-    return '<tr><td><strong>'+( i.customerName||'Unknown')+'</strong></td><td>'+(i.inquiryType||'General')+'</td><td>'+(i.date||'TBD')+'</td><td>'+(i.guestCount||'?')+'</td><td>'+urgencyBadge(i)+'</td><td>'+statusBadge(i.status)+'</td><td>'+timeAgo(i.createdAt)+'</td><td><button class="status-btn" onclick="updateStatus('+i.id+',\'contacted\')">Mark Contacted</button> <button class="status-btn" onclick="updateStatus('+i.id+',\'booked\')">Booked</button></td></tr>';
+function renderInquiries(list){
+  var tbody=document.getElementById('inquiryBody');
+  if(!list.length){tbody.innerHTML='<tr><td colspan="10"><div class="empty-state">No inquiries yet. Complete a Sofia conversation to see it here.</div></td></tr>';return;}
+  var sorted=list.slice().sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt);});
+  tbody.innerHTML=sorted.map(function(i){
+    var notes=[];
+    if(i.emotionalTone)notes.push('Tone: '+i.emotionalTone);
+    if(i.revenueSignal)notes.push('Revenue: '+i.revenueSignal);
+    if(i.recommendedManagerTone)notes.push('Approach: '+i.recommendedManagerTone);
+    if(i.managerNote)notes.push(i.managerNote);
+    return '<tr>'+
+      '<td><div class="guest-name">'+(i.customerName||'Unknown')+'</div><div class="guest-contact">'+(i.phone||'No phone')+'<br>'+(i.email||'No email')+'</div></td>'+
+      '<td><div>'+(i.inquiryType||'General')+'</div><div class="detail-line">'+(i.eventType||'')+'</div></td>'+
+      '<td><div>'+(i.date||'TBD')+(i.time?' at '+i.time:'')+'</div><div class="detail-line">'+(i.guestCount||'?')+' guests</div><div class="detail-line">'+(i.privateRoom||'')+'</div></td>'+
+      '<td><div>'+(i.foodStyle||'TBD')+'</div><div class="detail-line">'+(i.barNeeds||'')+'</div>'+(i.budgetConcern?'<div class="detail-line">Budget: '+i.budgetConcern+'</div>':'')+'</td>'+
+      '<td>'+(i.dietaryNeeds||'None')+'</td>'+
+      '<td><div class="ai-note">'+(notes.join('<br>')||'&mdash;')+'</div></td>'+
+      '<td>'+urgencyBadge(i)+'</td>'+
+      '<td>'+statusBadge(i.status)+'</td>'+
+      '<td><small>'+timeAgo(i.createdAt)+'</small></td>'+
+      '<td><div class="action-btns"><button class="status-btn" onclick="updateStatus('+i.id+',\'contacted\')">Contacted</button><button class="status-btn" onclick="updateStatus('+i.id+',\'booked\')">Booked</button></div></td>'+
+      '</tr>';
   }).join('');
 }
-function renderSpecials(specials) {
-  var el = document.getElementById('specialsList');
-  if (!specials.length) { el.innerHTML = '<div style="color:var(--muted);font-size:14px">No specials configured</div>'; return; }
-  el.innerHTML = specials.map(function(s){
-    return '<div class="special-row"><div class="special-name">'+s.name+'</div><div class="special-price">$'+s.price+'</div><label class="toggle"><input type="checkbox"'+(s.active?' checked':'')+'><span class="slider"></span></label></div>';
-  }).join('');
+function renderSpecials(specials){
+  var el=document.getElementById('specialsList');
+  if(!specials.length){el.innerHTML='<div style="color:var(--muted);font-size:14px">No specials configured</div>';return;}
+  el.innerHTML=specials.map(function(s){return '<div class="special-row"><div class="special-info"><div class="special-name">'+s.name+'</div><div class="special-desc">'+(s.description||'')+'</div></div><div class="special-price">$'+s.price+'</div><label class="toggle"><input type="checkbox"'+(s.active?' checked':'')+'><span class="slider"></span></label></div>';}).join('');
 }
 loadData();
-setInterval(loadData, 30000);
+setInterval(loadData,30000);
 </script>
 </body>
 </html>
