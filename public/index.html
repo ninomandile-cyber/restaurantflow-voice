@@ -241,7 +241,7 @@ function restartChat(){history=[];document.getElementById('chatWindow').innerHTM
 async function initChat(){
   showTyping();await new Promise(r=>setTimeout(r,900));removeTyping();
   const g="Welcome to Bella Tavola. I'm Sofia — I can help you plan a private event or catering, tell you about today's specials, recommend a wine pairing, or answer any questions. What can I help you with?";
-  appendMessage('assistant',g);history.push({role:'assistant',content:g});setTimeout(function(){speak(g);},800);showChips('start');
+  appendMessage('assistant',g);history.push({role:'assistant',content:g});speak(g);showChips('start');
 }
 initChat();
 </script>
