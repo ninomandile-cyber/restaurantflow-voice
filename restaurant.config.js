@@ -37,7 +37,7 @@ module.exports = {
   ],
   eventMinimum: 500,
   depositPolicy: "25 percent deposit to hold your date",
-  barOptions: ["Full open bar", "Beer and wine", "Soft drinks only"],
+  barOptions: ["Full open bar", "Cash bar", "Tab / hosted bar", "Beer and wine only", "Soft drinks only", "No alcohol"],
   dietaryAccommodations: "Gluten-free, vegetarian, vegan accommodated with advance notice",
   followUpSequence: [
     { dayOffset: 1, message: "Hi {name}, thanks for reaching out to {restaurant}. We would love to help make your event special. Did you have any other questions we can answer?" },
