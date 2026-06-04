@@ -133,11 +133,11 @@ input:checked+.slider:before{transform:translateX(16px)}
     <div class="card"><div id="wned"><div class="empty">Loading...</div></div></div>
   </div>
 </div>
-<div id="calmod" class="moverlay hidden" onclick="if(event.target===this)this.classList.add('hidden')">
+<div id="calmod" class="moverlay hidden" style="display:none" onclick="if(event.target===this){this.classList.add('hidden');this.style.display='none';}">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="mtitle" id="cmtit">Date Details</div>
     <div id="cmbody"></div>
-    <div class="mbtns"><button class="btn" onclick="document.getElementById('calmod').classList.add('hidden');return false;">Close</button><button class="btn btn-gold" onclick="saveCalEv()">Add Event</button></div>
+    <div class="mbtns"><button class="btn" onclick="var cm=document.getElementById('calmod');cm.classList.add('hidden');cm.style.display='none';">Close</button><button class="btn btn-gold" onclick="saveCalEv()">Add Event</button></div>
   </div>
 </div>
 <script>
@@ -283,7 +283,7 @@ function openCalDay(ds){
     '<div class="mfield"><label class="mlabel">Time</label><input id="cevtime" class="minput" placeholder="7:00 PM"></div>'+
     '<div class="mfield"><label class="mlabel">Notes</label><input id="cevnote" class="minput" placeholder="Party of 6, anniversary dinner..."></div></div>';
   document.getElementById('cmbody').innerHTML=html;
-  setTimeout(function(){document.getElementById('calmod').classList.remove('hidden');},100);
+  setTimeout(function(){var cm=document.getElementById('calmod');cm.classList.remove('hidden');cm.style.display='flex';},100);
 }
 function saveCalEv(){
   var name=document.getElementById('cevname').value.trim();
