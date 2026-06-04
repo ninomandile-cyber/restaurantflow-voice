@@ -103,6 +103,9 @@ app.get("/api/specials",function(req,res){res.json({specials:runtimeSpecials||RE
 app.post("/api/specials",function(req,res){runtimeSpecials=req.body.specials;res.json({success:true});});
 app.get("/api/menu",function(req,res){res.json({menu:runtimeMenu||RESTAURANT.menuItems});});
 app.post("/api/menu",function(req,res){runtimeMenu=req.body.menu;res.json({success:true});});
+var runtimeWine=null;
+app.get("/api/wine",function(req,res){res.json({wine:runtimeWine||RESTAURANT.wineList});});
+app.post("/api/wine",function(req,res){runtimeWine=req.body.wine;res.json({success:true});});
 app.get("/api/config",function(req,res){res.json({name:RESTAURANT.name,phone:RESTAURANT.phone,barOptions:RESTAURANT.barOptions,eventMinimum:RESTAURANT.eventMinimum,depositPolicy:RESTAURANT.depositPolicy,spaces:RESTAURANT.spaces});});
 
 app.get("/api/health",function(req,res){res.json({status:"ok",version:"3.0.0",restaurant:RESTAURANT.name,apiKeySet:!!process.env.ANTHROPIC_API_KEY,dbConnected:!!pool});});

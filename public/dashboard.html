@@ -9,15 +9,16 @@
 :root{--gold:#C9A84C;--dark:#0E0C0A;--surface:#1E1B17;--surface2:#252118;--border:rgba(201,168,76,0.2);--text:#F2EDE4;--muted:#9A9080;--dim:#5A5448;--red:#C44B3A;--green:#4A8C5C;--orange:#D4813A}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh}
-.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:12px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
 .restaurant-name{font-size:17px;color:var(--text);font-weight:400;margin-top:3px}
-.topbar-right{display:flex;gap:10px;align-items:center}
-.btn{background:none;border:1px solid var(--border);color:var(--muted);padding:7px 16px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn{background:none;border:1px solid var(--border);color:var(--muted);padding:7px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
 .btn:hover{border-color:var(--gold);color:var(--gold)}
-.btn-gold{background:var(--gold);color:#0E0C0A;border-color:var(--gold)}
-.btn-gold:hover{background:#E8C97A;color:#0E0C0A}
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 28px;background:var(--surface)}
+.btn-gold{background:var(--gold);color:#0E0C0A;border-color:var(--gold);font-weight:500}
+.btn-gold:hover{background:#E8C97A}
+.btn-red{background:rgba(196,75,58,.15);color:var(--red);border-color:rgba(196,75,58,.3)}
+.btn-red:hover{background:rgba(196,75,58,.25)}
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 28px;background:var(--surface)}
 .tab{padding:12px 20px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
 .tab.active{color:var(--gold);border-bottom-color:var(--gold)}
 .tab:hover{color:var(--text)}
@@ -25,304 +26,276 @@ body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;f
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px}
 .stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.stat-value{font-size:28px;font-weight:500;color:var(--text)}
+.stat-value{font-size:28px;font-weight:500}
 .stat-value.red{color:var(--red)}
 .stat-value.green{color:var(--green)}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px}
-.card-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.card-title{font-size:13px;font-weight:500;color:var(--text)}
-.inquiry-table{width:100%;border-collapse:collapse}
-.inquiry-table th{text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;border-bottom:1px solid var(--border);font-weight:400;white-space:nowrap}
-.inquiry-table td{padding:11px 14px;border-bottom:1px solid rgba(201,168,76,0.07);font-size:13px;vertical-align:top}
-.inquiry-table tr:last-child td{border-bottom:none}
-.inquiry-table tr:hover td{background:rgba(201,168,76,0.03)}
-.guest-name{font-weight:500;font-size:14px;color:var(--text)}
-.guest-contact{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.6}
+.itable{width:100%;border-collapse:collapse}
+.itable th{text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;border-bottom:1px solid var(--border);font-weight:400;white-space:nowrap}
+.itable td{padding:11px 14px;border-bottom:1px solid rgba(201,168,76,0.07);font-size:13px;vertical-align:top}
+.itable tr:last-child td{border-bottom:none}
+.itable tr:hover td{background:rgba(201,168,76,0.03)}
+.gname{font-weight:500;font-size:14px}
+.gcontact{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.6}
 .badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:500}
-.badge-hot{background:rgba(196,75,58,.15);color:var(--red);border:1px solid rgba(196,75,58,.3)}
-.badge-warm{background:rgba(212,129,58,.12);color:var(--orange);border:1px solid rgba(212,129,58,.3)}
-.badge-normal{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)}
-.badge-new{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
-.badge-contacted{background:rgba(74,140,92,.12);color:var(--green);border:1px solid rgba(74,140,92,.3)}
-.badge-booked{background:rgba(74,140,92,.2);color:var(--green);border:1px solid rgba(74,140,92,.5)}
-.badge-recovery{background:rgba(196,75,58,.2);color:var(--red);border:1px solid var(--red)}
-.action-btns{display:flex;flex-direction:column;gap:5px}
-.status-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap}
-.status-btn:hover{border-color:var(--gold);color:var(--gold)}
-.detail-line{font-size:12px;color:var(--muted);margin-top:2px}
-.ai-note{font-size:11px;color:var(--gold);line-height:1.6}
-.empty-state{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
-.section-pad{padding:20px}
-.form-row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(201,168,76,0.07)}
-.form-row:last-child{border-bottom:none}
-.form-label{font-size:13px;color:var(--text);flex:1}
-.form-sub{font-size:12px;color:var(--muted);margin-top:2px}
-.form-input{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;width:120px}
-.form-input:focus{outline:none;border-color:var(--gold)}
-.form-input-wide{width:240px}
-.toggle{position:relative;width:36px;height:20px;cursor:pointer;flex-shrink:0}
+.bh{background:rgba(196,75,58,.15);color:var(--red);border:1px solid rgba(196,75,58,.3)}
+.bw{background:rgba(212,129,58,.12);color:var(--orange);border:1px solid rgba(212,129,58,.3)}
+.bn{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)}
+.bnew{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.bc{background:rgba(74,140,92,.12);color:var(--green);border:1px solid rgba(74,140,92,.3)}
+.bb{background:rgba(74,140,92,.2);color:var(--green);border:1px solid rgba(74,140,92,.5)}
+.br{background:rgba(196,75,58,.2);color:var(--red);border:1px solid var(--red)}
+.sbtn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;display:block;width:100%;margin-bottom:4px;text-align:center}
+.sbtn:hover{border-color:var(--gold);color:var(--gold)}
+.dl{font-size:12px;color:var(--muted);margin-top:2px}
+.ainote{font-size:11px;color:var(--gold);line-height:1.6}
+.empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+.hidden{display:none}
+.savebar{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:rgba(201,168,76,0.06);border:1px solid var(--border);border-radius:10px;margin-bottom:16px}
+.savemsg{font-size:13px;color:var(--muted)}
+.eitem{padding:14px 20px;border-bottom:1px solid rgba(201,168,76,0.07);display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.eitem:last-child{border-bottom:none}
+.fg{display:flex;flex-direction:column;gap:5px;flex:1;min-width:120px}
+.flabel{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.finput{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;width:100%}
+.finput:focus{outline:none;border-color:var(--gold)}
+.toggle{position:relative;width:36px;height:20px;cursor:pointer;flex-shrink:0;margin-top:16px}
 .toggle input{opacity:0;width:0;height:0}
 .slider{position:absolute;top:0;left:0;right:0;bottom:0;background:var(--dim);border-radius:20px;transition:.3s}
 .slider:before{content:"";position:absolute;height:14px;width:14px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s}
 input:checked+.slider{background:var(--green)}
 input:checked+.slider:before{transform:translateX(16px)}
-.save-bar{background:rgba(201,168,76,0.08);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.save-msg{font-size:13px;color:var(--muted)}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:20px}
-.cal-header{text-align:center;font-size:11px;color:var(--muted);padding:6px;text-transform:uppercase;letter-spacing:.06em}
-.cal-day{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px;min-height:70px;cursor:pointer;transition:all .2s}
-.cal-day:hover{border-color:var(--gold)}
-.cal-day.has-event{border-color:rgba(201,168,76,.5);background:rgba(201,168,76,.06)}
-.cal-day.today{border-color:var(--gold)}
-.cal-day-num{font-size:13px;color:var(--muted);margin-bottom:4px}
-.cal-event{font-size:10px;background:var(--gold);color:#0E0C0A;border-radius:4px;padding:2px 5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cal-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 20px 0}
-.cal-month{font-size:15px;font-weight:500}
-.hidden{display:none}
+.calnav{display:flex;justify-content:space-between;align-items:center;padding:16px 20px}
+.caltitle{font-size:15px;font-weight:500}
+.calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:0 16px 16px}
+.calh{text-align:center;font-size:11px;color:var(--muted);padding:8px 4px;text-transform:uppercase;letter-spacing:.06em}
+.cald{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px;min-height:75px;cursor:pointer;transition:all .2s}
+.cald:hover{border-color:var(--gold)}
+.cald.today{border-color:var(--gold);background:rgba(201,168,76,0.05)}
+.cald.hasev{border-color:rgba(74,140,92,.4);background:rgba(74,140,92,.04)}
+.cald.emp{background:transparent;border-color:transparent;cursor:default}
+.calnum{font-size:12px;color:var(--muted);margin-bottom:3px}
+.evchip{font-size:10px;background:var(--gold);color:#0E0C0A;border-radius:4px;padding:2px 5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.revchip{font-size:10px;background:rgba(74,140,92,.3);color:var(--green);border-radius:4px;padding:2px 5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.moverlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:100;display:flex;align-items:center;justify-content:center}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;width:500px;max-width:92vw;max-height:85vh;overflow-y:auto}
+.mtitle{font-size:16px;font-weight:500;margin-bottom:18px;color:var(--gold)}
+.mfield{margin-bottom:12px}
+.mlabel{font-size:11px;color:var(--muted);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.06em}
+.minput{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;width:100%}
+.minput:focus{outline:none;border-color:var(--gold)}
+.mbtns{display:flex;gap:10px;margin-top:18px;justify-content:flex-end}
 </style>
 </head>
 <body>
 <div class="topbar">
-  <div>
-    <div class="logo">RestaurantFlow &mdash; Owner Dashboard</div>
-    <div class="restaurant-name" id="restaurantName">Loading...</div>
-  </div>
-  <div class="topbar-right">
-    <button class="btn" onclick="loadData()">Refresh</button>
-  </div>
+  <div><div class="logo">RestaurantFlow &mdash; Owner Dashboard</div><div class="restaurant-name" id="rname">Loading...</div></div>
+  <button class="btn" onclick="loadData()">Refresh</button>
 </div>
 <div class="tabs">
-  <div class="tab active" onclick="showTab('inquiries',this)">Inquiries</div>
-  <div class="tab" onclick="showTab('calendar',this)">Calendar</div>
-  <div class="tab" onclick="showTab('specials',this)">Specials</div>
-  <div class="tab" onclick="showTab('menu',this)">Menu</div>
+  <div class="tab active" onclick="showTab('inq',this)">Inquiries</div>
+  <div class="tab" onclick="showTab('cal',this)">Calendar</div>
+  <div class="tab" onclick="showTab('sp',this)">Specials</div>
+  <div class="tab" onclick="showTab('mn',this)">Menu</div>
+  <div class="tab" onclick="showTab('wn',this)">Wine List</div>
 </div>
 <div class="main">
   <div class="stats">
-    <div class="stat-card"><div class="stat-label">Total Inquiries</div><div class="stat-value" id="statTotal">0</div></div>
-    <div class="stat-card"><div class="stat-label">New Today</div><div class="stat-value red" id="statNew">0</div></div>
-    <div class="stat-card"><div class="stat-label">Hot Leads</div><div class="stat-value red" id="statHot">0</div></div>
-    <div class="stat-card"><div class="stat-label">Booked</div><div class="stat-value green" id="statBooked">0</div></div>
+    <div class="stat-card"><div class="stat-label">Total Inquiries</div><div class="stat-value" id="stot">0</div></div>
+    <div class="stat-card"><div class="stat-label">New Today</div><div class="stat-value red" id="snew">0</div></div>
+    <div class="stat-card"><div class="stat-label">Hot Leads</div><div class="stat-value red" id="shot">0</div></div>
+    <div class="stat-card"><div class="stat-label">Booked</div><div class="stat-value green" id="sbook">0</div></div>
   </div>
-
-  <div id="tab-inquiries">
+  <div id="tab-inq">
     <div class="card">
-      <table class="inquiry-table">
-        <thead>
-          <tr>
-            <th>Guest</th>
-            <th>Type</th>
-            <th>Event Date & Time</th>
-            <th>Guests / Room</th>
-            <th>Food / Bar</th>
-            <th>Dietary</th>
-            <th>AI Notes</th>
-            <th>Urgency</th>
-            <th>Status</th>
-            <th>Received</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="inquiryBody">
-          <tr><td colspan="11"><div class="empty-state">No inquiries yet.</div></td></tr>
-        </tbody>
+      <table class="itable">
+        <thead><tr><th>Guest</th><th>Type</th><th>Event Date/Time</th><th>Guests/Room</th><th>Food/Bar</th><th>Dietary</th><th>AI Notes</th><th>Urgency</th><th>Status</th><th>Received</th><th>Action</th></tr></thead>
+        <tbody id="ibody"><tr><td colspan="11"><div class="empty">No inquiries yet.</div></td></tr></tbody>
       </table>
     </div>
   </div>
-
-  <div id="tab-calendar" class="hidden">
+  <div id="tab-cal" class="hidden">
     <div class="card">
-      <div class="cal-nav">
-        <button class="btn" onclick="prevMonth()">&#8592; Prev</button>
-        <div class="cal-month" id="calMonth"></div>
-        <button class="btn" onclick="nextMonth()">Next &#8594;</button>
-      </div>
-      <div class="cal-grid" id="calGrid"></div>
+      <div class="calnav"><button class="btn" onclick="prevM()">&#8592; Prev</button><div class="caltitle" id="cmtitle"></div><button class="btn" onclick="nextM()">Next &#8594;</button></div>
+      <div class="calgrid" id="cgrid"></div>
     </div>
   </div>
-
-  <div id="tab-specials" class="hidden">
-    <div class="save-bar">
-      <span class="save-msg">Edit your daily specials. Changes apply immediately.</span>
-      <button class="btn btn-gold" onclick="saveSpecials()">Save Specials</button>
-    </div>
-    <div class="card">
-      <div class="section-pad" id="specialsEditor"></div>
-    </div>
+  <div id="tab-sp" class="hidden">
+    <div class="savebar"><span class="savemsg">Edit daily specials. Toggle on/off. Add or remove.</span><div style="display:flex;gap:8px"><button class="btn btn-gold" onclick="saveSp()">Save Specials</button><button class="btn" onclick="addSp()">+ Add Special</button></div></div>
+    <div class="card"><div id="sped"><div class="empty">Loading...</div></div></div>
   </div>
-
-  <div id="tab-menu" class="hidden">
-    <div class="save-bar">
-      <span class="save-msg">Edit your menu items. Changes apply immediately.</span>
-      <button class="btn btn-gold" onclick="saveMenu()">Save Menu</button>
-    </div>
-    <div class="card">
-      <div class="section-pad" id="menuEditor"></div>
-    </div>
+  <div id="tab-mn" class="hidden">
+    <div class="savebar"><span class="savemsg">Edit menu items. Add new dishes, update descriptions.</span><div style="display:flex;gap:8px"><button class="btn btn-gold" onclick="saveMn()">Save Menu</button><button class="btn" onclick="addMn()">+ Add Item</button></div></div>
+    <div class="card"><div id="mned"><div class="empty">Loading...</div></div></div>
+  </div>
+  <div id="tab-wn" class="hidden">
+    <div class="savebar"><span class="savemsg">Edit wine list. Add bottles, update pairings and pricing.</span><div style="display:flex;gap:8px"><button class="btn btn-gold" onclick="saveWn()">Save Wine List</button><button class="btn" onclick="addWn()">+ Add Wine</button></div></div>
+    <div class="card"><div id="wned"><div class="empty">Loading...</div></div></div>
   </div>
 </div>
-
+<div id="calmod" class="moverlay hidden" onclick="if(event.target===this)this.classList.add('hidden')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="mtitle" id="cmtit">Date Details</div>
+    <div id="cmbody"></div>
+    <div class="mbtns"><button class="btn" onclick="document.getElementById('calmod').classList.add('hidden')">Close</button><button class="btn btn-gold" onclick="saveCalEv()">Add Event</button></div>
+  </div>
+</div>
 <script>
-var allInquiries=[];
-var editSpecials=[];
-var editMenu=[];
-var calYear=new Date().getFullYear();
-var calMonth=new Date().getMonth();
-
-function showTab(name,el){
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
-  el.classList.add('active');
-  document.querySelectorAll('[id^="tab-"]').forEach(function(d){d.classList.add('hidden');});
-  document.getElementById('tab-'+name).classList.remove('hidden');
-  if(name==='calendar')renderCalendar();
+var inqs=[],spData=[],mnData=[],wnData=[],calEvs={},selDate='';
+var calY=new Date().getFullYear(),calM=new Date().getMonth();
+function showTab(n,el){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});el.classList.add('active');
+  ['inq','cal','sp','mn','wn'].forEach(function(t){document.getElementById('tab-'+t).classList[t===n?'remove':'add']('hidden');});
+  if(n==='cal')renderCal();
 }
-
 function loadData(){
-  fetch('/api/health').then(function(r){return r.json();}).then(function(h){document.getElementById('restaurantName').textContent=h.restaurant||'Restaurant';}).catch(function(){});
-  fetch('/api/inquiries').then(function(r){return r.json();}).then(function(data){allInquiries=data.inquiries||[];renderStats(allInquiries);renderInquiries(allInquiries);}).catch(function(){});
-  fetch('/api/specials').then(function(r){return r.json();}).then(function(data){editSpecials=JSON.parse(JSON.stringify(data.specials||[]));renderSpecialsEditor();}).catch(function(){});
-  fetch('/api/menu').then(function(r){return r.json();}).then(function(data){editMenu=JSON.parse(JSON.stringify(data.menu||[]));renderMenuEditor();}).catch(function(){});
+  fetch('/api/health').then(function(r){return r.json();}).then(function(h){document.getElementById('rname').textContent=h.restaurant||'Restaurant';}).catch(function(){});
+  fetch('/api/inquiries').then(function(r){return r.json();}).then(function(d){inqs=d.inquiries||[];renderStats();renderInqs();}).catch(function(){});
+  fetch('/api/specials').then(function(r){return r.json();}).then(function(d){spData=JSON.parse(JSON.stringify(d.specials||[]));renderSp();}).catch(function(){});
+  fetch('/api/menu').then(function(r){return r.json();}).then(function(d){mnData=JSON.parse(JSON.stringify(d.menu||[]));renderMn();}).catch(function(){});
+  fetch('/api/wine').then(function(r){return r.json();}).then(function(d){wnData=JSON.parse(JSON.stringify(d.wine||[]));renderWn();}).catch(function(){});
 }
-
-function renderStats(list){
+function renderStats(){
   var today=new Date().toDateString();
-  document.getElementById('statTotal').textContent=list.length;
-  document.getElementById('statNew').textContent=list.filter(function(i){return new Date(i.createdAt||i.created_at).toDateString()===today;}).length;
-  document.getElementById('statHot').textContent=list.filter(function(i){return i.urgency==='urgent'||i.urgency==='high'||i.serviceRecoveryRisk||i.service_recovery_risk;}).length;
-  document.getElementById('statBooked').textContent=list.filter(function(i){return i.status==='booked';}).length;
+  document.getElementById('stot').textContent=inqs.length;
+  document.getElementById('snew').textContent=inqs.filter(function(i){return new Date(i.createdAt||i.created_at).toDateString()===today;}).length;
+  document.getElementById('shot').textContent=inqs.filter(function(i){return i.urgency==='urgent'||i.urgency==='high'||i.serviceRecoveryRisk||i.service_recovery_risk;}).length;
+  document.getElementById('sbook').textContent=inqs.filter(function(i){return i.status==='booked';}).length;
 }
-
-function urgencyBadge(i){
-  if(i.serviceRecoveryRisk||i.service_recovery_risk)return '<span class="badge badge-recovery">Recovery</span>';
-  if(i.urgency==='urgent')return '<span class="badge badge-hot">Urgent</span>';
-  if(i.urgency==='high')return '<span class="badge badge-hot">Hot</span>';
-  if(i.urgency==='medium')return '<span class="badge badge-warm">Warm</span>';
-  return '<span class="badge badge-normal">Normal</span>';
+function ubadge(i){
+  if(i.serviceRecoveryRisk||i.service_recovery_risk)return '<span class="badge br">Recovery</span>';
+  if(i.urgency==='urgent'||i.urgency==='high')return '<span class="badge bh">Hot</span>';
+  if(i.urgency==='medium')return '<span class="badge bw">Warm</span>';
+  return '<span class="badge bn">Normal</span>';
 }
-
-function statusBadge(s){
-  if(s==='booked')return '<span class="badge badge-booked">Booked</span>';
-  if(s==='contacted')return '<span class="badge badge-contacted">Contacted</span>';
-  return '<span class="badge badge-new">New</span>';
+function sbadge(s){
+  if(s==='booked')return '<span class="badge bb">Booked</span>';
+  if(s==='contacted')return '<span class="badge bc">Contacted</span>';
+  return '<span class="badge bnew">New</span>';
 }
-
-function timeAgo(d){
-  if(!d)return 'Unknown';
-  var diff=Date.now()-new Date(d).getTime();
-  var m=Math.floor(diff/60000);
-  if(m<1)return 'just now';
-  if(m<60)return m+'m ago';
-  var h=Math.floor(m/60);
-  if(h<24)return h+'h ago';
-  return Math.floor(h/24)+'d ago';
-}
-
-function updateStatus(id,status){
-  fetch('/api/inquiries/'+id+'/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:status})}).then(function(){loadData();}).catch(function(){});
-}
-
-function renderInquiries(list){
-  var tbody=document.getElementById('inquiryBody');
-  if(!list.length){tbody.innerHTML='<tr><td colspan="11"><div class="empty-state">No inquiries yet. Complete a Sofia conversation to see it here.</div></td></tr>';return;}
-  var sorted=list.slice().sort(function(a,b){return new Date(b.createdAt||b.created_at)-new Date(a.createdAt||a.created_at);});
-  tbody.innerHTML=sorted.map(function(i){
+function tago(d){if(!d)return '?';var m=Math.floor((Date.now()-new Date(d))/60000);if(m<1)return 'just now';if(m<60)return m+'m ago';var h=Math.floor(m/60);if(h<24)return h+'h ago';return Math.floor(h/24)+'d ago';}
+function upStatus(id,status){fetch('/api/inquiries/'+id+'/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:status})}).then(function(){loadData();});}
+function renderInqs(){
+  var tb=document.getElementById('ibody');
+  if(!inqs.length){tb.innerHTML='<tr><td colspan="11"><div class="empty">No inquiries yet.</div></td></tr>';return;}
+  var sorted=inqs.slice().sort(function(a,b){return new Date(b.createdAt||b.created_at)-new Date(a.createdAt||a.created_at);});
+  tb.innerHTML=sorted.map(function(i){
     var notes=[];
-    var tone=i.emotionalTone||i.emotional_tone;
-    var revenue=i.revenueSignal||i.revenue_signal;
-    var approach=i.recommendedManagerTone||i.recommended_manager_tone;
-    var note=i.managerNote||i.manager_note;
-    if(tone)notes.push('Tone: '+tone);
-    if(revenue)notes.push('Revenue: '+revenue);
-    if(approach)notes.push('Approach: '+approach);
-    if(note)notes.push(note);
-    var eventDate=i.date||i.event_date||'TBD';
-    var eventTime=i.time||i.event_time||'';
-    var room=i.privateRoom||i.private_room||'';
-    var food=i.foodStyle||i.food_style||'TBD';
-    var bar=i.barNeeds||i.bar_needs||'';
-    var dietary=i.dietaryNeeds||i.dietary_needs||'None';
-    var budget=i.budgetConcern||i.budget_concern||'';
-    var srisk=i.serviceRecoveryRisk||i.service_recovery_risk;
-    var created=i.createdAt||i.created_at;
+    var tone=i.emotionalTone||i.emotional_tone,rev=i.revenueSignal||i.revenue_signal,app=i.recommendedManagerTone||i.recommended_manager_tone,note=i.managerNote||i.manager_note;
+    if(tone)notes.push('Tone: '+tone);if(rev)notes.push('Rev: '+rev);if(app)notes.push('Approach: '+app);if(note)notes.push(note);
+    var edate=i.date||i.event_date||'TBD',etime=i.time||i.event_time||'',room=i.privateRoom||i.private_room||'',food=i.foodStyle||i.food_style||'TBD',bar=i.barNeeds||i.bar_needs||'',diet=i.dietaryNeeds||i.dietary_needs||'None',budget=i.budgetConcern||i.budget_concern||'',srisk=i.serviceRecoveryRisk||i.service_recovery_risk,created=i.createdAt||i.created_at;
     return '<tr>'+
-      '<td><div class="guest-name">'+(i.customerName||i.customer_name||'Unknown')+'</div><div class="guest-contact">'+(i.phone||'No phone')+'<br>'+(i.email||'No email')+'</div></td>'+
-      '<td><div>'+(i.inquiryType||i.inquiry_type||'General')+'</div><div class="detail-line">'+(i.eventType||i.event_type||'')+'</div></td>'+
-      '<td><div style="font-weight:500">'+eventDate+'</div>'+(eventTime?'<div class="detail-line">Time: '+eventTime+'</div>':'')+'</td>'+
-      '<td><div>'+(i.guestCount||i.guest_count||'?')+' guests</div>'+(room?'<div class="detail-line">'+room+'</div>':'')+'</td>'+
-      '<td><div>'+food+'</div>'+(bar?'<div class="detail-line">'+bar+'</div>':'')+(budget?'<div class="detail-line">Budget: '+budget+'</div>':'')+'</td>'+
-      '<td>'+dietary+'</td>'+
-      '<td><div class="ai-note">'+(notes.join('<br>')||'&mdash;')+'</div></td>'+
-      '<td>'+urgencyBadge(i)+'</td>'+
-      '<td>'+statusBadge(i.status)+'</td>'+
-      '<td><small>'+timeAgo(created)+'</small></td>'+
-      '<td><div class="action-btns"><button class="status-btn" onclick="updateStatus('+i.id+',\'contacted\')">Contacted</button><button class="status-btn" onclick="updateStatus('+i.id+',\'booked\')">Booked</button></div></td>'+
+      '<td><div class="gname">'+(i.customerName||i.customer_name||'Unknown')+'</div><div class="gcontact">'+(i.phone||'No phone')+'<br>'+(i.email||'No email')+'</div></td>'+
+      '<td>'+(i.inquiryType||i.inquiry_type||'General')+'<div class="dl">'+(i.eventType||i.event_type||'')+'</div></td>'+
+      '<td><strong>'+edate+'</strong>'+(etime?'<div class="dl">'+etime+'</div>':'')+'</td>'+
+      '<td>'+(i.guestCount||i.guest_count||'?')+' guests'+(room?'<div class="dl">'+room+'</div>':'')+'</td>'+
+      '<td>'+food+(bar?'<div class="dl">'+bar+'</div>':'')+(budget?'<div class="dl">Budget: '+budget+'</div>':'')+'</td>'+
+      '<td>'+diet+'</td>'+
+      '<td><div class="ainote">'+(notes.join('<br>')||'&mdash;')+'</div></td>'+
+      '<td>'+ubadge(i)+'</td>'+
+      '<td>'+sbadge(i.status)+'</td>'+
+      '<td><small>'+tago(created)+'</small></td>'+
+      '<td><button class="sbtn" onclick="upStatus('+i.id+',\'contacted\')">Contacted</button><button class="sbtn" onclick="upStatus('+i.id+',\'booked\')">Booked</button></td>'+
       '</tr>';
   }).join('');
 }
-
-function renderSpecialsEditor(){
-  var el=document.getElementById('specialsEditor');
-  if(!editSpecials.length){el.innerHTML='<div class="empty-state">No specials configured</div>';return;}
-  el.innerHTML=editSpecials.map(function(s,idx){
-    return '<div class="form-row">'+
-      '<div style="flex:2"><div class="form-label">'+s.name+'</div><div class="form-sub">'+s.description+'</div></div>'+
-      '<input class="form-input" type="number" value="'+s.price+'" onchange="editSpecials['+idx+'].price=parseFloat(this.value)" placeholder="Price">'+
-      '<label class="toggle"><input type="checkbox"'+(s.active?' checked':'')+' onchange="editSpecials['+idx+'].active=this.checked"><span class="slider"></span></label>'+
-      '<label style="font-size:12px;color:var(--muted);margin-left:8px">'+( s.active?'Active':'Off')+'</label>'+
+function renderSp(){
+  var el=document.getElementById('sped');
+  if(!spData.length){el.innerHTML='<div class="empty">No specials. Click Add Special.</div>';return;}
+  el.innerHTML=spData.map(function(s,i){
+    return '<div class="eitem">'+
+      '<div class="fg" style="flex:2"><div class="flabel">Name</div><input class="finput" value="'+s.name+'" onchange="spData['+i+'].name=this.value"></div>'+
+      '<div class="fg" style="flex:3"><div class="flabel">Description</div><input class="finput" value="'+(s.description||'')+'" onchange="spData['+i+'].description=this.value"></div>'+
+      '<div class="fg" style="flex:0;width:80px"><div class="flabel">Price $</div><input class="finput" type="number" value="'+s.price+'" onchange="spData['+i+'].price=parseFloat(this.value)"></div>'+
+      '<div class="fg" style="flex:0"><div class="flabel">Meal</div><input class="finput" style="width:90px" value="'+(s.mealPeriod||'dinner')+'" onchange="spData['+i+'].mealPeriod=this.value"></div>'+
+      '<div class="fg" style="flex:0;align-items:center"><div class="flabel">Active</div><label class="toggle"><input type="checkbox"'+(s.active?' checked':'')+' onchange="spData['+i+'].active=this.checked"><span class="slider"></span></label></div>'+
+      '<div class="fg" style="flex:0"><div class="flabel">&nbsp;</div><button class="btn btn-red" style="margin-top:6px" onclick="spData.splice('+i+',1);renderSp()">Remove</button></div>'+
       '</div>';
   }).join('');
 }
-
-function saveSpecials(){
-  fetch('/api/specials',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({specials:editSpecials})}).then(function(){alert('Specials saved! Sofia now knows about your updates.');}).catch(function(){alert('Error saving specials');});
-}
-
-function renderMenuEditor(){
-  var el=document.getElementById('menuEditor');
-  if(!editMenu.length){el.innerHTML='<div class="empty-state">No menu items</div>';return;}
-  el.innerHTML=editMenu.map(function(m,idx){
-    return '<div class="form-row">'+
-      '<div style="flex:2"><div class="form-label">'+m.name+'</div>'+
-      '<input class="form-input form-input-wide" type="text" value="'+m.description+'" onchange="editMenu['+idx+'].description=this.value" style="margin-top:6px;width:100%">'+
-      '</div>'+
-      '<div style="font-size:12px;color:var(--muted)">'+m.category+'</div>'+
+function addSp(){spData.push({name:'New Special',description:'',price:0,mealPeriod:'dinner',active:true,soldOut:false});renderSp();}
+function saveSp(){fetch('/api/specials',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({specials:spData})}).then(function(){alert('Specials saved. Sofia is updated.');}).catch(function(){alert('Error saving');});}
+function renderMn(){
+  var el=document.getElementById('mned');
+  if(!mnData.length){el.innerHTML='<div class="empty">No menu items. Click Add Item.</div>';return;}
+  el.innerHTML=mnData.map(function(m,i){
+    return '<div class="eitem">'+
+      '<div class="fg" style="flex:1.5"><div class="flabel">Name</div><input class="finput" value="'+m.name+'" onchange="mnData['+i+'].name=this.value"></div>'+
+      '<div class="fg" style="flex:3"><div class="flabel">Description</div><input class="finput" value="'+(m.description||'')+'" onchange="mnData['+i+'].description=this.value"></div>'+
+      '<div class="fg" style="flex:1"><div class="flabel">Category</div><input class="finput" value="'+(m.category||'entree')+'" onchange="mnData['+i+'].category=this.value"></div>'+
+      '<div class="fg" style="flex:1.5"><div class="flabel">Dietary Tags (comma sep)</div><input class="finput" value="'+(m.dietaryTags?m.dietaryTags.join(', '):'')+'" onchange="mnData['+i+'].dietaryTags=this.value.split(\',\').map(function(t){return t.trim();}).filter(Boolean)"></div>'+
+      '<div class="fg" style="flex:0"><div class="flabel">&nbsp;</div><button class="btn btn-red" style="margin-top:6px" onclick="mnData.splice('+i+',1);renderMn()">Remove</button></div>'+
       '</div>';
   }).join('');
 }
-
-function saveMenu(){
-  fetch('/api/menu',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({menu:editMenu})}).then(function(){alert('Menu saved! Sofia now knows about your updates.');}).catch(function(){alert('Error saving menu');});
+function addMn(){mnData.push({name:'New Item',description:'',category:'entree',dietaryTags:[]});renderMn();}
+function saveMn(){fetch('/api/menu',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({menu:mnData})}).then(function(){alert('Menu saved. Sofia is updated.');}).catch(function(){alert('Error saving');});}
+function renderWn(){
+  var el=document.getElementById('wned');
+  if(!wnData.length){el.innerHTML='<div class="empty">No wines. Click Add Wine.</div>';return;}
+  el.innerHTML=wnData.map(function(w,i){
+    return '<div class="eitem">'+
+      '<div class="fg" style="flex:2"><div class="flabel">Name</div><input class="finput" value="'+w.name+'" onchange="wnData['+i+'].name=this.value"></div>'+
+      '<div class="fg" style="flex:1"><div class="flabel">Type</div><input class="finput" value="'+(w.type||'')+'" onchange="wnData['+i+'].type=this.value" placeholder="red/white/sparkling"></div>'+
+      '<div class="fg" style="flex:2"><div class="flabel">Style</div><input class="finput" value="'+(w.style||'')+'" onchange="wnData['+i+'].style=this.value"></div>'+
+      '<div class="fg" style="flex:2"><div class="flabel">Pairs With (comma sep)</div><input class="finput" value="'+(w.pairsWith?w.pairsWith.join(', '):'')+'" onchange="wnData['+i+'].pairsWith=this.value.split(\',\').map(function(t){return t.trim();}).filter(Boolean)"></div>'+
+      '<div class="fg" style="flex:0;width:70px"><div class="flabel">$/Glass</div><input class="finput" type="number" value="'+(w.priceGlass||0)+'" onchange="wnData['+i+'].priceGlass=parseFloat(this.value)"></div>'+
+      '<div class="fg" style="flex:0;width:70px"><div class="flabel">$/Bottle</div><input class="finput" type="number" value="'+(w.priceBottle||0)+'" onchange="wnData['+i+'].priceBottle=parseFloat(this.value)"></div>'+
+      '<div class="fg" style="flex:0"><div class="flabel">&nbsp;</div><button class="btn btn-red" style="margin-top:6px" onclick="wnData.splice('+i+',1);renderWn()">Remove</button></div>'+
+      '</div>';
+  }).join('');
 }
-
-function renderCalendar(){
+function addWn(){wnData.push({name:'New Wine',type:'red',style:'',pairsWith:[],priceGlass:0,priceBottle:0});renderWn();}
+function saveWn(){fetch('/api/wine',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wine:wnData})}).then(function(){alert('Wine list saved. Sofia is updated.');}).catch(function(){alert('Error saving');});}
+function prevM(){calM--;if(calM<0){calM=11;calY--;}renderCal();}
+function nextM(){calM++;if(calM>11){calM=0;calY++;}renderCal();}
+function renderCal(){
   var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('calMonth').textContent=months[calMonth]+' '+calYear;
-  var grid=document.getElementById('calGrid');
-  var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  var headers=days.map(function(d){return '<div class="cal-header">'+d+'</div>';}).join('');
-  var first=new Date(calYear,calMonth,1).getDay();
-  var daysInMonth=new Date(calYear,calMonth+1,0).getDate();
-  var today=new Date();
-  var eventsByDate={};
-  allInquiries.forEach(function(i){
-    var d=i.date||i.event_date;
-    if(d)eventsByDate[d]=(eventsByDate[d]||[]).concat([i.customerName||i.customer_name||'Guest']);
-  });
-  var cells='';
-  for(var i=0;i<first;i++)cells+='<div></div>';
-  for(var d=1;d<=daysInMonth;d++){
-    var dateStr=calYear+'-'+(calMonth+1<10?'0':'')+(calMonth+1)+'-'+(d<10?'0':'')+d;
-    var isToday=d===today.getDate()&&calMonth===today.getMonth()&&calYear===today.getFullYear();
-    var events=eventsByDate[dateStr]||[];
-    var cls='cal-day'+(isToday?' today':'')+(events.length?' has-event':'');
-    cells+='<div class="'+cls+'"><div class="cal-day-num">'+d+'</div>'+events.map(function(e){return '<div class="cal-event">'+e+'</div>';}).join('')+'</div>';
+  document.getElementById('cmtitle').textContent=months[calM]+' '+calY;
+  var evByDate={};
+  inqs.forEach(function(i){var d=i.date||i.event_date;if(d){evByDate[d]=evByDate[d]||[];evByDate[d].push({name:i.customerName||i.customer_name||'Guest',status:i.status});}});
+  Object.keys(calEvs).forEach(function(d){(calEvs[d]||[]).forEach(function(e){evByDate[d]=evByDate[d]||[];evByDate[d].push(e);});});
+  var first=new Date(calY,calM,1).getDay(),days=new Date(calY,calM+1,0).getDate(),today=new Date();
+  var html=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(function(d){return '<div class="calh">'+d+'</div>';}).join('');
+  for(var i=0;i<first;i++)html+='<div class="cald emp"></div>';
+  for(var d=1;d<=days;d++){
+    var ds=calY+'-'+(calM+1<10?'0':'')+(calM+1)+'-'+(d<10?'0':'')+d;
+    var evs=evByDate[ds]||[];
+    var isT=d===today.getDate()&&calM===today.getMonth()&&calY===today.getFullYear();
+    html+='<div class="cald'+(isT?' today':'')+(evs.length?' hasev':'')+'" onclick="openCalDay(\''+ds+'\')">'+
+      '<div class="calnum">'+d+'</div>'+evs.slice(0,3).map(function(e){return '<div class="'+(e.status==='booked'?'evchip':'revchip')+'">'+e.name+'</div>';}).join('')+
+      (evs.length>3?'<div style="font-size:10px;color:var(--muted)">+more</div>':'')+
+      '</div>';
   }
-  grid.innerHTML=headers+cells;
+  document.getElementById('cgrid').innerHTML=html;
 }
-
-function prevMonth(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCalendar();}
-function nextMonth(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCalendar();}
-
+function openCalDay(ds){
+  selDate=ds;
+  document.getElementById('cmtit').textContent='Events for '+ds;
+  var evByDate={};
+  inqs.forEach(function(i){var d=i.date||i.event_date;if(d){evByDate[d]=evByDate[d]||[];evByDate[d].push(i);}});
+  var evs=evByDate[ds]||[],extra=calEvs[ds]||[];
+  var html='';
+  if(evs.length)html+='<div style="margin-bottom:14px"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Sofia Inquiries</div>'+evs.map(function(i){return '<div style="padding:8px 12px;background:var(--surface2);border-radius:8px;margin-bottom:6px;font-size:13px"><strong>'+(i.customerName||i.customer_name||'Guest')+'</strong> &mdash; '+(i.guestCount||i.guest_count||'?')+' guests &mdash; '+sbadge(i.status)+'</div>';}).join('')+'</div>';
+  if(extra.length)html+='<div style="margin-bottom:14px"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Manual Events</div>'+extra.map(function(e){return '<div style="padding:8px 12px;background:var(--surface2);border-radius:8px;margin-bottom:6px;font-size:13px">'+e.name+'</div>';}).join('')+'</div>';
+  html+='<div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Add Manual Event / Reservation</div>'+
+    '<div class="mfield"><label class="mlabel">Name or Description</label><input id="cevname" class="minput" placeholder="Walk-in reservation, private event, blocked..."></div>'+
+    '<div class="mfield"><label class="mlabel">Time</label><input id="cevtime" class="minput" placeholder="7:00 PM"></div>'+
+    '<div class="mfield"><label class="mlabel">Notes</label><input id="cevnote" class="minput" placeholder="Party of 6, anniversary dinner..."></div></div>';
+  document.getElementById('cmbody').innerHTML=html;
+  document.getElementById('calmod').classList.remove('hidden');
+}
+function saveCalEv(){
+  var name=document.getElementById('cevname').value.trim();
+  var time=document.getElementById('cevtime').value.trim();
+  var note=document.getElementById('cevnote').value.trim();
+  if(!name)return;
+  calEvs[selDate]=calEvs[selDate]||[];
+  calEvs[selDate].push({name:name+(time?' at '+time:'')+(note?' - '+note:''),status:'booked'});
+  document.getElementById('calmod').classList.add('hidden');
+  renderCal();
+}
+function sbadge(s){if(s==='booked')return '<span class="badge bb">Booked</span>';if(s==='contacted')return '<span class="badge bc">Contacted</span>';return '<span class="badge bnew">New</span>';}
 loadData();
 setInterval(loadData,30000);
 </script>
