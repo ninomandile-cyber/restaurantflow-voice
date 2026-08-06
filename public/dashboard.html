@@ -98,6 +98,7 @@ input:checked+.slider:before{transform:translateX(16px)}
   <div class="tab" onclick="showTab('sp',this)">Specials</div>
   <div class="tab" onclick="showTab('mn',this)">Menu</div>
   <div class="tab" onclick="showTab('wn',this)">Wine List</div>
+  <div class="tab" onclick="showTab('pr',this)">Prospects</div>
 </div>
 <div class="main">
   <div class="stats">
@@ -132,6 +133,21 @@ input:checked+.slider:before{transform:translateX(16px)}
     <div class="savebar"><span class="savemsg">Edit wine list. Add bottles, update pairings and pricing.</span><div style="display:flex;gap:8px"><button class="btn btn-gold" onclick="saveWn()">Save Wine List</button><button class="btn" onclick="addWn()">+ Add Wine</button></div></div>
     <div class="card"><div id="wned"><div class="empty">Loading...</div></div></div>
   </div>
+  <div id="tab-pr" class="hidden">
+    <div class="savebar" style="flex-wrap:wrap;gap:10px">
+      <span class="savemsg">Find local businesses with a weak online presence &mdash; ranked weakest first. Admin only.</span>
+    </div>
+    <div class="card" style="padding:16px 20px;margin-bottom:16px">
+      <div class="eitem" style="border:none;padding:0;align-items:flex-end">
+        <div class="fg" style="flex:2"><div class="flabel">Business Type</div><input class="finput" id="prType" placeholder="e.g. pizza, dentist, salon"></div>
+        <div class="fg" style="flex:2"><div class="flabel">City</div><input class="finput" id="prCity" placeholder="e.g. Elk Grove Village IL"></div>
+        <div class="fg" style="flex:0;width:110px"><div class="flabel"># Results</div><input class="finput" id="prNum" type="number" value="10" min="1" max="20"></div>
+        <div class="fg" style="flex:0"><div class="flabel">Admin Key</div><input class="finput" id="prKey" type="password" placeholder="x-admin-key" style="width:150px"></div>
+        <div class="fg" style="flex:0"><div class="flabel">&nbsp;</div><button class="btn btn-gold" onclick="findProspects()" id="prBtn">Find Prospects</button></div>
+      </div>
+    </div>
+    <div class="card"><div id="prResults"><div class="empty">Enter a business type and city, then Find Prospects.</div></div></div>
+  </div>
 </div>
 <div id="calmod" class="moverlay hidden" style="display:none" onclick="if(event.target===this){this.classList.add('hidden');this.style.display='none';}">
   <div class="modal" onclick="event.stopPropagation()">
@@ -145,7 +161,7 @@ var inqs=[],spData=[],mnData=[],wnData=[],calEvs={},selDate='';
 var calY=new Date().getFullYear(),calM=new Date().getMonth();
 function showTab(n,el){
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});el.classList.add('active');
-  ['inq','cal','sp','mn','wn'].forEach(function(t){document.getElementById('tab-'+t).classList[t===n?'remove':'add']('hidden');});
+  ['inq','cal','sp','mn','wn','pr'].forEach(function(t){document.getElementById('tab-'+t).classList[t===n?'remove':'add']('hidden');});
   if(n==='cal')renderCal();
 }
 function loadData(){
@@ -296,6 +312,48 @@ function saveCalEv(){
   renderCal();
 }
 function sbadge(s){if(s==='booked')return '<span class="badge bb">Booked</span>';if(s==='contacted')return '<span class="badge bc">Contacted</span>';return '<span class="badge bnew">New</span>';}
+var PR_KEY_STORE='rf_prospect_key';
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function scoreBadge(score){var cls=score>=60?'bh':(score>=30?'bw':'bn');return '<span class="badge '+cls+'">'+score+'</span>';}
+function findProspects(){
+  var type=document.getElementById('prType').value.trim();
+  var city=document.getElementById('prCity').value.trim();
+  var num=parseInt(document.getElementById('prNum').value,10)||10;
+  var key=document.getElementById('prKey').value.trim();
+  if(!type||!city){document.getElementById('prResults').innerHTML='<div class="empty">Enter both a business type and a city.</div>';return;}
+  if(!key){document.getElementById('prResults').innerHTML='<div class="empty">Enter your admin key.</div>';return;}
+  localStorage.setItem(PR_KEY_STORE,key);
+  var btn=document.getElementById('prBtn');btn.disabled=true;btn.textContent='Searching...';
+  document.getElementById('prResults').innerHTML='<div class="empty">Searching Google for local businesses...</div>';
+  fetch('/api/prospects',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':key},body:JSON.stringify({businessType:type,city:city,numResults:num})})
+    .then(function(r){return r.json().then(function(d){return {ok:r.ok,status:r.status,d:d};});})
+    .then(function(res){
+      btn.disabled=false;btn.textContent='Find Prospects';
+      if(!res.ok){var m=res.d&&res.d.error?res.d.error:'Request failed';if(res.status===401)m='Wrong admin key.';document.getElementById('prResults').innerHTML='<div class="empty">'+esc(m)+'</div>';return;}
+      renderProspects(res.d);
+    })
+    .catch(function(e){btn.disabled=false;btn.textContent='Find Prospects';document.getElementById('prResults').innerHTML='<div class="empty">'+esc(e.message)+'</div>';});
+}
+function renderProspects(d){
+  var rows=d.prospects||[];
+  if(!rows.length){document.getElementById('prResults').innerHTML='<div class="empty">No businesses found for that search.</div>';return;}
+  var cap=d.capped?'<div class="dl" style="padding:10px 14px;color:var(--orange)">Results capped at 20 per search.</div>':'';
+  var html='<table class="itable"><thead><tr><th>Prospect</th><th>Phone</th><th>Website</th><th>Reviews</th><th>Rating</th><th>Weakness</th><th>Why they need us</th></tr></thead><tbody>';
+  html+=rows.map(function(p){
+    return '<tr>'+
+      '<td><div class="gname">'+esc(p.name)+'</div>'+(p.address?'<div class="gcontact">'+esc(p.address)+'</div>':'')+(p.mapsUrl?'<div class="dl"><a href="'+esc(p.mapsUrl)+'" target="_blank" style="color:var(--gold)">View on Maps</a></div>':'')+'</td>'+
+      '<td>'+(p.phone?esc(p.phone):'<span class="badge bh">None</span>')+'</td>'+
+      '<td>'+(p.website?'<a href="'+esc(p.website)+'" target="_blank" style="color:var(--gold)">Site</a>':'<span class="badge bh">None</span>')+'</td>'+
+      '<td>'+(p.reviewCount!=null?p.reviewCount:'0')+'</td>'+
+      '<td>'+(p.rating!=null?p.rating.toFixed(1):'<span class="dl">&mdash;</span>')+'</td>'+
+      '<td>'+scoreBadge(p.score)+'</td>'+
+      '<td><div class="ainote">'+(p.reasons||[]).map(esc).join('<br>')+'</div></td>'+
+      '</tr>';
+  }).join('');
+  html+='</tbody></table>';
+  document.getElementById('prResults').innerHTML=cap+html;
+}
+document.getElementById('prKey').value=localStorage.getItem(PR_KEY_STORE)||'';
 loadData();
 setInterval(loadData,30000);
 </script>

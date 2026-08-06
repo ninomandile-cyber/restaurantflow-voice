@@ -110,6 +110,102 @@ app.get("/api/config",function(req,res){res.json({name:RESTAURANT.name,phone:RES
 
 app.get("/api/health",function(req,res){res.json({status:"ok",version:"3.0.0",restaurant:RESTAURANT.name,apiKeySet:!!process.env.ANTHROPIC_API_KEY,dbConnected:!!pool});});
 
+// ---- Prospect Finder (admin-only) ----
+// Finds local businesses with a weak online presence — the kind of business
+// RestaurantFlow can sell to. Ranked weakest-first, with the reason each is a prospect.
+var ADMIN_KEY = process.env.ADMIN_KEY || "VFAdmin2024!";
+function requireAdmin(req, res, next) {
+  if ((req.headers["x-admin-key"] || "") !== ADMIN_KEY) {
+    return res.status(401).json({ error: "unauthorized" });
+  }
+  next();
+}
+
+// Scores a Places result. Higher score = weaker online presence = better prospect.
+// NOTE: true GBP posting cadence is only visible to a profile's own owner/manager via the
+// Business Profile API — we cannot see it for prospects. We approximate "presence" from
+// website + review volume + rating, and say so rather than implying we measured posting.
+function scoreProspect(p) {
+  var score = 0, reasons = [];
+  if (!p.website) { score += 40; reasons.push("No website listed on their Google profile."); }
+  var rc = (typeof p.reviewCount === "number") ? p.reviewCount : null;
+  if (rc === 0 || rc === null) { score += 30; reasons.push("No Google reviews yet — no social proof."); }
+  else if (rc <= 15) { score += 20; reasons.push("Only " + rc + " Google reviews — thin social proof."); }
+  else if (rc <= 40) { score += 10; reasons.push(rc + " Google reviews — room to build reputation."); }
+  var rt = (typeof p.rating === "number") ? p.rating : null;
+  if (rt === null) { score += 15; reasons.push("No star rating — reputation is unmanaged."); }
+  else if (rt < 4.0) { score += 15; reasons.push("Rating " + rt.toFixed(1) + " — below 4.0, needs active management."); }
+  if (!p.phone) { score += 10; reasons.push("No phone number on their profile."); }
+  if (p.businessStatus && p.businessStatus !== "OPERATIONAL") {
+    reasons.push("Marked '" + p.businessStatus + "' on Google — verify before outreach.");
+  }
+  if (!reasons.length) reasons.push("Solid presence — lower priority prospect.");
+  return { score: score, reasons: reasons };
+}
+
+app.post("/api/prospects", requireAdmin, function(req, res) {
+  var businessType = (req.body.businessType || "").toString().trim();
+  var city = (req.body.city || "").toString().trim();
+  var numResults = parseInt(req.body.numResults, 10);
+  if (!businessType || !city) {
+    return res.status(400).json({ error: "businessType and city are required" });
+  }
+  if (isNaN(numResults) || numResults < 1) numResults = 10;
+  var CAP = 20;
+  var capped = numResults > CAP;
+  if (capped) numResults = CAP;
+  if (!process.env.GOOGLE_PLACES_API_KEY) {
+    return res.status(503).json({ error: "GOOGLE_PLACES_API_KEY not configured" });
+  }
+  var textQuery = businessType + " in " + city;
+  fetch("https://places.googleapis.com/v1/places:searchText", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Goog-Api-Key": process.env.GOOGLE_PLACES_API_KEY,
+      "X-Goog-FieldMask": "places.displayName,places.nationalPhoneNumber,places.websiteUri,places.rating,places.userRatingCount,places.businessStatus,places.formattedAddress,places.googleMapsUri"
+    },
+    body: JSON.stringify({ textQuery: textQuery, maxResultCount: numResults })
+  }).then(function(response) {
+    if (!response.ok) {
+      return response.text().then(function(raw) {
+        var msg = "Places API error";
+        try { msg = JSON.parse(raw).error.message || msg; } catch(e) {}
+        res.status(response.status).json({ error: msg });
+      });
+    }
+    return response.json().then(function(data) {
+      var places = (data.places || []).slice(0, numResults).map(function(pl) {
+        var mapped = {
+          name: (pl.displayName && pl.displayName.text) || "Unknown business",
+          phone: pl.nationalPhoneNumber || null,
+          website: pl.websiteUri || null,
+          reviewCount: (typeof pl.userRatingCount === "number") ? pl.userRatingCount : 0,
+          rating: (typeof pl.rating === "number") ? pl.rating : null,
+          mapsUrl: pl.googleMapsUri || null,
+          address: pl.formattedAddress || null,
+          businessStatus: pl.businessStatus || null
+        };
+        var scored = scoreProspect(mapped);
+        mapped.score = scored.score;
+        mapped.reasons = scored.reasons;
+        mapped.pitch = "RestaurantFlow can help: " + scored.reasons.slice(0, 2).join(" ");
+        return mapped;
+      });
+      places.sort(function(a, b) { return b.score - a.score; });
+      res.json({
+        query: { businessType: businessType, city: city, numResults: numResults },
+        count: places.length,
+        capped: capped,
+        prospects: places
+      });
+    });
+  }).catch(function(err) {
+    console.error("Prospects error:", err.message);
+    res.status(500).json({ error: err.message });
+  });
+});
+
 app.get("*",function(req,res){res.sendFile(path.join(__dirname,"public","index.html"));});
 
 var PORT=process.env.PORT||3000;
