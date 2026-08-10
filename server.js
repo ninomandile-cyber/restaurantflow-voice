@@ -113,8 +113,13 @@ app.get("/api/health",function(req,res){res.json({status:"ok",version:"3.0.0",re
 // ---- Prospect Finder (admin-only) ----
 // Finds local businesses with a weak online presence — the kind of business
 // RestaurantFlow can sell to. Ranked weakest-first, with the reason each is a prospect.
-var ADMIN_KEY = process.env.ADMIN_KEY || "VFAdmin2024!";
+// Fail closed: if no ADMIN_KEY is configured we refuse every request rather than
+// fall back to a hardcoded default (a known default in source is no protection).
+var ADMIN_KEY = process.env.ADMIN_KEY || "";
 function requireAdmin(req, res, next) {
+  if (!ADMIN_KEY) {
+    return res.status(503).json({ error: "ADMIN_KEY not configured" });
+  }
   if ((req.headers["x-admin-key"] || "") !== ADMIN_KEY) {
     return res.status(401).json({ error: "unauthorized" });
   }
